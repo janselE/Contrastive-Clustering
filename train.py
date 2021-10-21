@@ -6,6 +6,7 @@ import argparse
 from modules import transform, resnet, network, contrastive_loss
 from utils import yaml_config_hook, save_model
 from torch.utils import data
+from localdataset import CustomDataSet
 
 
 def train():
@@ -43,6 +44,12 @@ if __name__ == "__main__":
     np.random.seed(args.seed)
 
     # prepare data
+    if args.dataset == "local":
+        dataset = torchvision.datasets.ImageFolder(
+            root=args.data_path,
+            transform=transform.Transforms(s=0.5, size=args.image_size),
+        )
+        class_num = 10
     if args.dataset == "CIFAR-10":
         train_dataset = torchvision.datasets.CIFAR10(
             root=args.dataset_dir,

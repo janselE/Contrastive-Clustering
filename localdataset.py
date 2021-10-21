@@ -1,8 +1,10 @@
 from PIL import Image
+import torch
+import glob
 
 
-class CustomDataSet(Dataset):
-    def __init__(self, main_dir, transform):
+class CustomDataSet(torch.utils.data.Dataset):
+    def __init__(self, path, transform):
         self.transform = transform
         self.image_list = []
 
