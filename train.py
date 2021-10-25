@@ -46,11 +46,11 @@ if __name__ == "__main__":
     # prepare data
     if args.dataset == "local":
         dataset = torchvision.datasets.ImageFolder(
-            root=args.data_path,
+            root="D:\Jansel\Images_Bulk_Labeling",
             transform=transform.Transforms(s=0.5, size=args.image_size),
         )
         class_num = 10
-    if args.dataset == "CIFAR-10":
+    elif args.dataset == "CIFAR-10":
         train_dataset = torchvision.datasets.CIFAR10(
             root=args.dataset_dir,
             download=True,
